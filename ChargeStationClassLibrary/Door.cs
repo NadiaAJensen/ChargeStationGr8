@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace ChargeStationClassLibrary
 {
-    public interface IDoor
+    public class Door:IDoor
     {
         public event EventHandler<DoorChangedEventArgs> DoorStatusChangedEvent;
+        public void UnLockDoor()
+        {
+            Console.WriteLine("Door is unlocked");
+        }
 
-        public void UnLockDoor();
-
-        public void LockDoor();
-
+        public void LockDoor()
+        {
+            Console.WriteLine("Door is locked");
+        }
     }
 }
