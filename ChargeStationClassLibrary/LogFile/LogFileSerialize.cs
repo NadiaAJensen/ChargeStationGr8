@@ -11,16 +11,15 @@ namespace ChargeStationClassLibrary.LogFile
     public class LogFileSerialize
     {
         // Tjek Solution "Configuration" fra ITS3 3. semester
-        public void Save(LogFile logData)
+        public void Save(DTO_LogData dtoLogData)
         {
-
-            string json = JsonSerializer.Serialize(logData);
-            File.WriteAllText(@"..\..\nameOfFile.json", json);
+            string json = JsonSerializer.Serialize(dtoLogData);
+            File.WriteAllText(@"..\..\logFile.json", json);
         }
-        public LogFile Load(LogFile logData, string path)
+        public DTO_LogData Load(DTO_LogData dtoLogData, string path)
         {
             string text = File.ReadAllText(path);
-            LogFile logFileConfig = JsonSerializer.Deserialize<LogFile>(text);
+            DTO_LogData logFileConfig = JsonSerializer.Deserialize<DTO_LogData>(text);
             return logFileConfig;
 
             // tilføj kode som overskriver 
