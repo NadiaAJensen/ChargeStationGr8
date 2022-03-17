@@ -19,7 +19,7 @@ namespace ChargerStationGr8
 
             logFileControl.Load(logFile, @"..\..\logFile.json"); // hvis DoorIsLocked
 
-            IRFIDReader rfidReader;
+            IRFIDReader rfidReader = new RFIReader();
 
             IDoor door = new Door();
 
@@ -38,11 +38,11 @@ namespace ChargerStationGr8
                         break;
 
                     case 'O':
-                        door.OpenDoor();
+                        door.OpenDoor(true);
                         break;
 
                     case 'C':
-                        door.CloseDoor();
+                        door.CloseDoor(false);
                         break;
 
                     case 'R':
@@ -50,7 +50,7 @@ namespace ChargerStationGr8
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        rfidReader.OnRfidRead(id);
+                        rfidReader.ReadRFIDTag(1234);
                         break;
 
                     default:

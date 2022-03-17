@@ -14,9 +14,9 @@ namespace ChargeStationClassLibrary.Door
 
         public void LockDoor();
 
-        public void OpenDoor(DoorChangedEventArgs e);
+        public void OpenDoor(bool status);
 
-        public void CloseDoor(DoorChangedEventArgs e);
+        public void CloseDoor(bool status);
 
     }
 }
