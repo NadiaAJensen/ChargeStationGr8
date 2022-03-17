@@ -33,13 +33,13 @@ namespace ChargeStationClassLibrary
 
         private string logFile = "logFile.json"; // Navnet på systemets log-fil
 
-        public StationControl(IRFIDReader rfidReader, IDoor door, DTO_LogData dtoLog)
+        public StationControl(IRFIDReader rfidReader, IDoor door, ILogFile logfile)
         {
             _door = door;
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
 
             rfidReader.IdChangedEvent += HandleRFIDChangedEvent;
-            _dtoLogData = dtoLog;
+            //_dtoLogData = dtoLog;
         }
 
         //Logik om ID == OldID skal skrives i denne klasse

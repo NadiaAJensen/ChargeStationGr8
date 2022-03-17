@@ -11,6 +11,11 @@ namespace ChargeStationClassLibrary.LogFile
         private DTO_LogData dtoLogData;
         private LogFileSerialize _logFileSerialize;
 
+        public LogFile()
+        {
+
+        }
+
         public LogFile(DTO_LogData dtoLog, LogFileSerialize logFileSerialize)
         {
             dtoLogData = dtoLog;

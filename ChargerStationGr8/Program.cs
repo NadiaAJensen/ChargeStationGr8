@@ -1,5 +1,6 @@
 ﻿using System;
 using ChargeStationClassLibrary;
+using ChargeStationClassLibrary.Display;
 using ChargeStationClassLibrary.LogFile;
 using ChargeStationClassLibrary.Door;
 using ChargeStationClassLibrary.RFIDReader;
@@ -14,6 +15,15 @@ namespace ChargerStationGr8
             IRFIDReader rfidReader = new RFIReader();
 
             IDoor door = new Door();
+
+            ILogFile logFile = new LogFile();
+
+            IDisplay display = new Display();
+
+            IUSBCharger usbsChargerSimulator = new USBChargerSimulator();
+
+            StationControl stationControl = new StationControl(rfidReader, door, logFile);
+            ChargeControl chargeControl = new ChargeControl(display, usbsChargerSimulator);
 
             bool finish = false;
             do
