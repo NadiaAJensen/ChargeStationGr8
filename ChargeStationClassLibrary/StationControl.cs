@@ -14,6 +14,8 @@ namespace ChargeStationClassLibrary
         private LogFileSerialize logFileSerialize;
 
         private DTO_LogData _dtoLogData;
+
+        private LogFile.LogFile _logFile;
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
         {
@@ -47,7 +49,7 @@ namespace ChargeStationClassLibrary
                         _door.LockDoor();
                         _charger.StartCharge(); 
                         _oldId = id;
-                        logFileSerialize.Save(_dtoLogData);
+                        _logFile.LogDoorLocked(id);
                         //using (var writer = File.AppendText(logFile))
                         //{
                         //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
@@ -73,7 +75,8 @@ namespace ChargeStationClassLibrary
                     {
                         _charger.StopCharge();
                         _door.UnLockDoor();
-                        logFileSerialize.Load(_dtoLogData, logFile);
+                        _logFile.LogDoorUnlocked(id);
+                        
                     //    using (var writer = File.AppendText(logFile))
                     //    {
                     //        writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);

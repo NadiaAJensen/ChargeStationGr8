@@ -10,14 +10,6 @@ namespace ChargerStationGr8
     {
         static void Main(string[] args)
         {
-            //json:
-            var logFile = new LogFile();
-            var logFileControl = new LogFileSerialize();
-
-
-            logFileControl.Save(logFile); // hvis DoorIsUnlocked
-
-            logFileControl.Load(logFile, @"..\..\logFile.json"); // hvis DoorIsLocked
 
             IRFIDReader rfidReader;
 

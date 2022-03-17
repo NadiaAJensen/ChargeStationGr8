@@ -9,10 +9,12 @@ namespace ChargeStationClassLibrary.LogFile
     public class LogFile : ILogFile
     {
         private DTO_LogData dtoLogData;
+        private LogFileSerialize _logFileSerialize;
 
-        public LogFile(DTO_LogData dtoLog)
+        public LogFile(DTO_LogData dtoLog, LogFileSerialize logFileSerialize)
         {
             dtoLogData = dtoLog;
+            _logFileSerialize = logFileSerialize;
         }
 
         public void LogDoorLocked(int id)
@@ -21,6 +23,7 @@ namespace ChargeStationClassLibrary.LogFile
             dtoLogData.Locked = true;
             dtoLogData.Description = "Door is locked";
             dtoLogData.TimeStamp = DateTime.Now;
+            _logFileSerialize.Save(dtoLogData);
         }
 
         public void LogDoorUnlocked(int id)
@@ -29,6 +32,7 @@ namespace ChargeStationClassLibrary.LogFile
             dtoLogData.Locked = false;
             dtoLogData.Description = "Door is unlocked";
             dtoLogData.TimeStamp = DateTime.Now;
+            _logFileSerialize.Load(dtoLogData, @"..\..\logFile.json");
         }
     }
 }
