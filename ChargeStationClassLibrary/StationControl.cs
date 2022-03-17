@@ -36,7 +36,7 @@ namespace ChargeStationClassLibrary
             _door = door;
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
 
-            rfidReader.IdChangedEvent += RfidDetected()
+            rfidReader.IdChangedEvent += HandleRFIDChangedEvent;
             _dtoLogData = dtoLog;
         }
 
@@ -121,8 +121,11 @@ namespace ChargeStationClassLibrary
             {
                 _state = LadeskabState.Locked;
             }
+        }
 
-
+        private void HandleRFIDChangedEvent(object sender, RFIDChangedEventArgs e)
+        {
+            RfidDetected(e.Id);
         }
     }
 }
