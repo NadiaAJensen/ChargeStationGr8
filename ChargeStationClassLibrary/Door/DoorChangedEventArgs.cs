@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChargeStationClassLibrary
+namespace ChargeStationClassLibrary.Door
 {
     public class DoorChangedEventArgs: EventArgs
     {
