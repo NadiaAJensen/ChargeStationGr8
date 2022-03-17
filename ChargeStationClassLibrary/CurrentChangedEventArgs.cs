@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChargeStationClassLibrary
 {
-    public class DoorChangedEventArgs: EventArgs
+    public class CurrentChangedEventArgs : EventArgs
     {
-        public bool DoorStatus { get; set; }
+        public double Current { get; set; }
     }
 }
