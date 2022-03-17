@@ -11,7 +11,7 @@ namespace ChargerStationGr8
         static void Main(string[] args)
         {
 
-            IRFIDReader rfidReader;
+            IRFIDReader rfidReader = new RFIReader();
 
             IDoor door = new Door();
 
@@ -30,11 +30,11 @@ namespace ChargerStationGr8
                         break;
 
                     case 'O':
-                        door.UnLockDoor();
+                        door.OpenDoor(true);
                         break;
 
                     case 'C':
-                        door.LockDoor();
+                        door.CloseDoor(false);
                         break;
 
                     case 'R':
@@ -42,7 +42,7 @@ namespace ChargerStationGr8
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        rfidReader.OnRfidRead(id);
+                        rfidReader.ReadRFIDTag(1234);
                         break;
 
                     default:
