@@ -17,7 +17,7 @@ namespace ChargerStationGr8
         private const int ChargeTimeMinutes = 20; // minutes
         private const int CurrentTickInterval = 250; // ms
 
-        public event EventHandler<CurrentEventArgs> CurrentValueEvent;
+        public event EventHandler<CurrentChangedEventArgs> CurrentChangedEvent;
 
         public double CurrentValue { get; private set; }
 
@@ -28,7 +28,7 @@ namespace ChargerStationGr8
         private System.Timers.Timer _timer;
         private int _ticksSinceStart;
 
-        public UsbChargerSimulator()
+        public USBChargerSimulator()
         {
             CurrentValue = 0.0;
             Connected = true;
@@ -114,7 +114,7 @@ namespace ChargerStationGr8
 
         private void OnNewCurrent()
         {
-            CurrentValueEvent?.Invoke(this, new CurrentChangedEventArgs() { Current = CurrentValue });
+            CurrentChangedEvent?.Invoke(this, new CurrentChangedEventArgs() { Current = this.CurrentValue });
         }
     }
 }
