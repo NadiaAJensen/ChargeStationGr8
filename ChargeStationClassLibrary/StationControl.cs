@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 using System.IO;
 using ChargeStationClassLibrary.Door;
 using ChargeStationClassLibrary.RFIDReader;
+using ChargeStationClassLibrary.LogFile;
 
 namespace ChargeStationClassLibrary
 {
     public class StationControl
     {
+        private LogFileSerialize logFileSerialize;
+
+        private DTO_LogData _dtoLogData;
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
         {
@@ -28,13 +32,16 @@ namespace ChargeStationClassLibrary
         private string logFile = "logFile.json"; // Navnet på systemets log-fil
 
         public StationControl(IRFIDReader rfidReader, IDoor door)
+        public StationControl(DTO_LogData dtoLog)
         {
             _door = door;
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
 
             rfidReader.IdChangedEvent += RfidDetected()
+            _dtoLogData = dtoLog;
         }
 
+        //Logik om ID == OldID skal skrives i denne klasse
         private void RfidDetected(int id)
         {
             switch (_state)
@@ -46,12 +53,13 @@ namespace ChargeStationClassLibrary
                         _door.LockDoor();
                         _charger.StartCharge(); 
                         _oldId = id;
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
+                        logFileSerialize.Save(_dtoLogData);
+                        //using (var writer = File.AppendText(logFile))
+                        //{
+                        //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
+                        //}
 
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
@@ -71,13 +79,15 @@ namespace ChargeStationClassLibrary
                     {
                         _charger.StopCharge();
                         _door.UnLockDoor();
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        }
+                        logFileSerialize.Load(_dtoLogData, logFile);
+                    //    using (var writer = File.AppendText(logFile))
+                    //    {
+                    //        writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
+                    //    }
 
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
-                        _state = LadeskabState.Available;
+                    //    Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                           _state = LadeskabState.Available;
+                    
                     }
                     else
                     {

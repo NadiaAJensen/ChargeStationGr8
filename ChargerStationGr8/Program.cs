@@ -19,6 +19,7 @@ namespace ChargerStationGr8
 
             logFileControl.Load(logFile, @"..\..\logFile.json"); // hvis DoorIsLocked
 
+            IRFIDReader rfidReader;
 
             IDoor door = new Door();
 
@@ -49,7 +50,7 @@ namespace ChargerStationGr8
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        //rfidReader.OnRfidRead(id);
+                        rfidReader.OnRfidRead(id);
                         break;
 
                     default:
@@ -61,4 +62,4 @@ namespace ChargerStationGr8
 
     }
     }
-}
+

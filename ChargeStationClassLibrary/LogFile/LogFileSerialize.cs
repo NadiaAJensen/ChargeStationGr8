@@ -24,5 +24,7 @@ namespace ChargeStationClassLibrary.LogFile
 
             // tilføj kode som overskriver 
         }
+
+        
     }
 }
