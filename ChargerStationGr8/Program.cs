@@ -38,11 +38,11 @@ namespace ChargerStationGr8
                         break;
 
                     case 'O':
-                        door.UnLockDoor();
+                        door.OpenDoor();
                         break;
 
                     case 'C':
-                        door.LockDoor();
+                        door.CloseDoor();
                         break;
 
                     case 'R':

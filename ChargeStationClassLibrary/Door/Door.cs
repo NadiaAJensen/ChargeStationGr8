@@ -18,5 +18,15 @@ namespace ChargeStationClassLibrary.Door
         {
             Console.WriteLine("Door is locked");
         }
+
+        public void OpenDoor(DoorChangedEventArgs e)
+        {
+            DoorStatusChangedEvent?.Invoke(this,e);
+        }
+
+        public void CloseDoor(DoorChangedEventArgs e)
+        {
+            DoorStatusChangedEvent?.Invoke(this, e);
+        }
     }
 }
