@@ -8,6 +8,8 @@ namespace ChargeStationClassLibrary
 {
     public interface IChargeControl
     {
+        bool Connected { get; set; }
+
 
     }
 }
