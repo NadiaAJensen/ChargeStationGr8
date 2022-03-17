@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using ChargeStationClassLibrary.Door;
+using ChargeStationClassLibrary.RFIDReader;
 using ChargeStationClassLibrary.LogFile;
 
 namespace ChargeStationClassLibrary
@@ -30,8 +31,12 @@ namespace ChargeStationClassLibrary
 
         private string logFile = "logFile.json"; // Navnet på systemets log-fil
 
-        public StationControl(DTO_LogData dtoLog)
+        public StationControl(IRFIDReader rfidReader, IDoor door, DTO_LogData dtoLog)
         {
+            _door = door;
+            door.DoorStatusChangedEvent += HandleDoorChangedEvents;
+
+            rfidReader.IdChangedEvent += HandleRFIDChangedEvent;
             _dtoLogData = dtoLog;
         }
 
@@ -106,9 +111,21 @@ namespace ChargeStationClassLibrary
 
         }
 
-        private void HandleDoorChangedEvents()
+        private void HandleDoorChangedEvents(object sender, DoorChangedEventArgs e)
         {
+            if (e.DoorStatus)
+            {
+                _state = LadeskabState.DoorOpen;
+            }
+            else
+            {
+                _state = LadeskabState.Locked;
+            }
+        }
 
+        private void HandleRFIDChangedEvent(object sender, RFIDChangedEventArgs e)
+        {
+            RfidDetected(e.Id);
         }
     }
 }
