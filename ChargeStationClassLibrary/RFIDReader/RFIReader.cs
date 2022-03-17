@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace ChargeStationClassLibrary.RFIDReader
 {
-   class RFIReader
+   class RFIReader:IRFIDReader
    {
+      public event EventHandler<RFIDChangedEventArgs> IdChangedEvent;
+      private Random rdr = new Random();
+
+      public void ReadRFIDTag(int id)
+      {
+         IdChangedEvent?.Invoke(this,new RFIDChangedEventArgs {Id = id});
+
+      }
+
+
    }
 }
