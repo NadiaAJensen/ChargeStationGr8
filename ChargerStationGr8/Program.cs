@@ -19,6 +19,7 @@ namespace ChargerStationGr8
 
             logFileControl.Load(logFile, @"..\..\logFile.json"); // hvis DoorIsLocked
 
+            IRFIDReader rfidReader;
 
             IDoor door = new Door();
 
