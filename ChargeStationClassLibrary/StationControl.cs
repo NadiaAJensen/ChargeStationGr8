@@ -31,8 +31,7 @@ namespace ChargeStationClassLibrary
 
         private string logFile = "logFile.json"; // Navnet på systemets log-fil
 
-        public StationControl(IRFIDReader rfidReader, IDoor door)
-        public StationControl(DTO_LogData dtoLog)
+        public StationControl(IRFIDReader rfidReader, IDoor door, DTO_LogData dtoLog)
         {
             _door = door;
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
