@@ -24,7 +24,7 @@ namespace ChargeStationClassLibrary
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private IChargeControl _charger; //Vi skal lige ha lavet den her klasse
+        private IChargeControl _charger; 
         private int _oldId;
         private IDoor _door;
 
@@ -45,7 +45,7 @@ namespace ChargeStationClassLibrary
                     if (_charger.Connected)
                     {
                         _door.LockDoor();
-                        //_charger.StartCharge(); 
+                        _charger.StartCharge(); 
                         _oldId = id;
                         logFileSerialize.Save(_dtoLogData);
                         //using (var writer = File.AppendText(logFile))
@@ -71,7 +71,7 @@ namespace ChargeStationClassLibrary
                     // Check for correct ID
                     if (id == _oldId)
                     {
-                        //_charger.StopCharge();
+                        _charger.StopCharge();
                         _door.UnLockDoor();
                         logFileSerialize.Load(_dtoLogData, logFile);
                     //    using (var writer = File.AppendText(logFile))

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChargeStationClassLibrary.RFIDReader
 {
-   interface IRFIDReader
+   public interface IRFIDReader
    {
+      event EventHandler<RFIDChangedEventArgs> IdChangedEvent;
+      public void ReadRFIDTag(int id);
    }
 }

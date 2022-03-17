@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChargeStationClassLibrary.RFIDReader
 {
-   class RFIDChangedEventArgs
+   public class RFIDChangedEventArgs: EventArgs
    {
+      public int Id { get; set; }
    }
 }
