@@ -29,8 +29,9 @@ namespace ChargeStationClassLibrary
 
         private string logFile = "logFile.json"; // Navnet på systemets log-fil
 
-        public StationControl(IRFIDReader rfidReader, IDoor door, ILogFile logfile)
+        public StationControl(IChargeControl chargeControl, IRFIDReader rfidReader, IDoor door, ILogFile logfile)
         {
+            _charger = chargeControl;
             _door = door;
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
 
@@ -113,7 +114,7 @@ namespace ChargeStationClassLibrary
         {
             if (e.DoorStatus)
             {
-                _state = LadeskabState.DoorOpen;
+                _state = LadeskabState.Available;
             }
             else
             {

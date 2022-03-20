@@ -21,9 +21,10 @@ namespace ChargerStationGr8
             IDisplay display = new Display();
 
             IUSBCharger usbsChargerSimulator = new USBChargerSimulator();
-
-            StationControl stationControl = new StationControl(rfidReader, door, logFile);
             ChargeControl chargeControl = new ChargeControl(display, usbsChargerSimulator);
+
+            StationControl stationControl = new StationControl(chargeControl, rfidReader, door, logFile);
+            
 
             bool finish = false;
             do
