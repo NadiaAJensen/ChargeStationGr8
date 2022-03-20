@@ -25,6 +25,7 @@ namespace ChargerStationGr8
 
             StationControl stationControl = new StationControl(chargeControl, rfidReader, door, logFile);
             
+            
 
             bool finish = false;
             do
