@@ -12,10 +12,6 @@ namespace ChargeStationClassLibrary
 {
     public class StationControl
     {
-        private LogFileSerialize logFileSerialize;
-
-        private DTO_LogData _dtoLogData;
-
         private LogFile.LogFile _logFile;
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
@@ -39,7 +35,6 @@ namespace ChargeStationClassLibrary
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
 
             rfidReader.IdChangedEvent += HandleRFIDChangedEvent;
-            //_dtoLogData = dtoLog;
         }
 
         //Logik om ID == OldID skal skrives i denne klasse

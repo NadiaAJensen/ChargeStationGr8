@@ -18,10 +18,10 @@ namespace ChargeStationClassLibrary.LogFile
         }
         public DTO_LogData Load(DTO_LogData dtoLogData, string path)
         {
-            string text = File.ReadAllText(path);
-            DTO_LogData logFileConfig = JsonSerializer.Deserialize<DTO_LogData>(text);
-            return logFileConfig;
-
+                string text = File.ReadAllText(path);
+                DTO_LogData logFileConfig = JsonSerializer.Deserialize<DTO_LogData>(text);
+                return logFileConfig;
+                
             // tilføj kode som overskriver 
         }
 
