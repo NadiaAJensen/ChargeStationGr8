@@ -18,4 +18,9 @@
     <PackageReference Include="NunitXml.TestLogger" Version="3.0.117" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ChargerStationGr8\ChargerStationGr8.csproj" />
+    <ProjectReference Include="..\ChargeStationClassLibrary\ChargeStationClassLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
