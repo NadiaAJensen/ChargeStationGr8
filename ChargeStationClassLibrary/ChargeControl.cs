@@ -14,13 +14,13 @@ namespace ChargeStationClassLibrary
         public bool Connected { get; set; }
         public double LatestCurrent { get; set; }
 
-        public event EventHandler<CurrentChangedEventArgs> CurrentChangeEvent;
+        public event EventHandler<CurrentChangedEventArgs> CurrentChangeEventArgs;
 
         public ChargeControl(IDisplay display, IUSBCharger usbCharger)
         {
             _display = display;
             _usbCharger = usbCharger;
-            _usbCharger.CurrentChangedEvent += HandleCurrentChangedEvent;
+            _usbCharger.CurrentChangedEventArgs += HandleCurrentChangedEvent;
             Connected = _usbCharger.Connected;
       }
 

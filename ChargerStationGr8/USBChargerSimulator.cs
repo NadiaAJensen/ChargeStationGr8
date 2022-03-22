@@ -17,7 +17,7 @@ namespace ChargerStationGr8
         private const int ChargeTimeMinutes = 20; // minutes
         private const int CurrentTickInterval = 250; // ms
 
-        public event EventHandler<CurrentChangedEventArgs> CurrentChangedEvent;
+        public event EventHandler<CurrentChangedEventArgs> CurrentChangedEventArgs;
 
         public double CurrentValue { get; private set; }
 
@@ -114,7 +114,7 @@ namespace ChargerStationGr8
 
         private void OnNewCurrent()
         {
-            CurrentChangedEvent?.Invoke(this, new CurrentChangedEventArgs() { Current = this.CurrentValue });
+            CurrentChangedEventArgs?.Invoke(this, new CurrentChangedEventArgs() { Current = this.CurrentValue });
         }
     }
 }

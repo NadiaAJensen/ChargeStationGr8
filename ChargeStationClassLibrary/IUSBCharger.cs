@@ -9,7 +9,7 @@ namespace ChargeStationClassLibrary
     public interface IUSBCharger
     {
         // Event triggered on new current value
-        event EventHandler<CurrentChangedEventArgs> CurrentChangedEvent;
+        event EventHandler<CurrentChangedEventArgs> CurrentChangedEventArgs;
 
         // Direct access to the current current value
         double CurrentValue { get; }

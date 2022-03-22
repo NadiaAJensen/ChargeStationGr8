@@ -8,7 +8,7 @@ namespace ChargeStationClassLibrary
 {
     public interface IChargeControl
     {
-        event EventHandler<CurrentChangedEventArgs> CurrentChangeEvent;
+        event EventHandler<CurrentChangedEventArgs> CurrentChangeEventArgs;
         bool Connected { get; set; }
         void StartCharge();
         void StopCharge();

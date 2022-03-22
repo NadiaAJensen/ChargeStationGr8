@@ -24,14 +24,14 @@ namespace ChargeStationUnitTests
       }
 
       [Test]
-      public void testReadIdIsCalledWithAnId()
+      public void TestReadIdIsCalledWithAnId()
       {
          _uut.ReadRFIDTag(1234);
          Assert.That(_receivedEventArgs, Is.Not.Null);
       }
       [Test]
 
-      public void testReadId_IsCalled_WithTheRightId()
+      public void TestReadId_IsCalled_WithTheRightId()
       {
          _uut.ReadRFIDTag(1234);
          Assert.That(_receivedEventArgs.Id,Is.EqualTo(1234));
