@@ -29,8 +29,7 @@ namespace ChargerStationGr8
             bool finish = false;
             Console.WriteLine("Control Menu");
             Console.WriteLine("----------------------");
-            Console.WriteLine(
-                "To put in your phone: Open door, put phone to charger, enter RFID id and close door ");
+            Console.WriteLine("To put in your phone: Open door, put phone to charger, enter RFID id and close door ");
             Console.WriteLine("To take your phone: Enter RFID id, open door take phone off charger and close door");
             Console.WriteLine("[O]      Open door");
             Console.WriteLine("[U]      Simulates phone to charger");
