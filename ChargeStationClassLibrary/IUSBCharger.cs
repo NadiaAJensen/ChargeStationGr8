@@ -15,7 +15,7 @@ namespace ChargeStationClassLibrary
         double CurrentValue { get; }
 
         // Require connection status of the phone
-        bool Connected { get; }
+        public bool Connected { get; }
 
         // Start charging
         void StartCharge();

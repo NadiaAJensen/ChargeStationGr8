@@ -20,7 +20,7 @@ namespace ChargerStationGr8
 
             IDisplay display = new Display();
 
-            IUSBCharger usbsChargerSimulator = new USBChargerSimulator();
+            USBChargerSimulator usbsChargerSimulator = new USBChargerSimulator();
             ChargeControl chargeControl = new ChargeControl(display, usbsChargerSimulator);
 
             StationControl stationControl = new StationControl(chargeControl, rfidReader, door, logFile);
@@ -31,7 +31,7 @@ namespace ChargerStationGr8
             do
             {
                 string input;
-                System.Console.WriteLine("Indtast E, O, C, R: ");
+                System.Console.WriteLine("Indtast E, O, C, R, u: ");
                 input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input)) continue;
 
@@ -54,6 +54,10 @@ namespace ChargerStationGr8
                         string idString = System.Console.ReadLine();
                         rfidReader.ReadRFIDTag(Convert.ToInt32(idString));
                         break;
+                    
+                    case 'u':
+                       usbsChargerSimulator.SimulateConnected(true);
+                       break; 
 
                     default:
                         break;

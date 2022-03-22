@@ -30,7 +30,8 @@ namespace ChargeStationClassLibrary
 
         public bool IsConnected()
         {
-            return Connected;
+           Connected = _usbCharger.Connected;
+           return Connected;
         }
         public void StartCharge()
         {
