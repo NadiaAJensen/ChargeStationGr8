@@ -12,7 +12,7 @@ namespace ChargeStationClassLibrary
 {
     public class StationControl
     {
-        private LogFile.LogFile _logFile;
+        private ILogFile _logFile;
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
         {
@@ -33,6 +33,7 @@ namespace ChargeStationClassLibrary
         {
             _charger = chargeControl;
             _door = door;
+            _logFile = logfile;
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
 
             rfidReader.IdChangedEvent += HandleRFIDChangedEvent;

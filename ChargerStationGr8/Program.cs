@@ -16,7 +16,7 @@ namespace ChargerStationGr8
 
             IDoor door = new Door();
 
-            ILogFile logFile = new LogFile();
+            ILogFile logFile = new LogFile(new DTO_LogData(),new LogFileSerialize());
 
             IDisplay display = new Display();
 
