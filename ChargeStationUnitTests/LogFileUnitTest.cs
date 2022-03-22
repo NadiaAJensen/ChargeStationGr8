@@ -23,14 +23,6 @@ namespace ChargeStationUnitTests
             
         }
 
-        [Test]
-       
-        public void CorrectId1234() // virker ikke
-        {
-            _uut.LogDoorLocked(1234);
-            Assert.That(_uutDtoLogData.Id, Is.EqualTo(1234));
-        }
-
         [TestCase(1234)]
         [TestCase(2345)]
         [TestCase(3456)]
@@ -39,11 +31,12 @@ namespace ChargeStationUnitTests
         [TestCase(6789)]
         [TestCase(7890)]
 
-        public void CorrectId(int id) //virker ikke
+        public void IdDetected(int id) 
         {
             _uut.LogDoorLocked(id);
             Assert.That(_uutDtoLogData.Id, Is.EqualTo(id));
         }
+
 
         [Test]
         public void IsCalled_LockDoorLocked()
