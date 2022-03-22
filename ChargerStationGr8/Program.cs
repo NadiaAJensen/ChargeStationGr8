@@ -16,29 +16,37 @@ namespace ChargerStationGr8
 
             IDoor door = new Door();
 
-            ILogFile logFile = new LogFile(new DTO_LogData(),new LogFileSerialize());
+            ILogFile logFile = new LogFile(new DTO_LogData(), new LogFileSerialize());
 
             IDisplay display = new Display();
 
             USBChargerSimulator usbsChargerSimulator = new USBChargerSimulator();
             ChargeControl chargeControl = new ChargeControl(display, usbsChargerSimulator);
 
-            StationControl stationControl = new StationControl(chargeControl, rfidReader, door, logFile);
+            StationControl stationControl = new StationControl(chargeControl, rfidReader, door, logFile, display);
 
-            bool cont = true;
+
+            bool finish = false;
             Console.WriteLine("Control Menu");
             Console.WriteLine("----------------------");
+            Console.WriteLine(
+                "To put in your phone: Open door, put phone to charger, enter RFID id and close door ");
+            Console.WriteLine("To take your phone: Enter RFID id, open door take phone off charger and close door");
             Console.WriteLine("[O]      Open door");
-            Console.WriteLine("[C]      Close door");
-            Console.WriteLine("[R]      Indtast RFID id");
             Console.WriteLine("[U]      Simulates phone to charger");
+            Console.WriteLine("[C]      Close door");
+            Console.WriteLine("[R]      Enter RFID id");
             Console.WriteLine("[W]      Simulates phone off charger");
             Console.WriteLine("[E]      Ending Program");
 
-            while (cont)
+            do
             {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                switch (key.KeyChar)
+                string input;
+
+                input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input)) continue;
+
+                switch (input[0])
                 {
                     case 'O':
                     case 'o':
@@ -64,12 +72,13 @@ namespace ChargerStationGr8
                         break;
                     case 'E':
                     case 'e':
-                        cont = false;
+                        finish = true;
                         break;
                 }
-            }
+            } while (!finish);
         }
+    }
 
-    }
-    }
+}
+    
 

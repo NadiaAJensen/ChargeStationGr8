@@ -18,7 +18,9 @@ namespace ChargeStationUnitTests
         [SetUp]
         public void Setup()
         {
-            _uut = new LogFile();
+            _uutDtoLogData = new DTO_LogData();
+            _uut = new LogFile(_uutDtoLogData, new LogFileSerialize());
+            
         }
 
         [Test]
@@ -50,17 +52,17 @@ namespace ChargeStationUnitTests
             Assert.That(_uutDtoLogData.Id, Is.EqualTo(1234));
             Assert.That(_uutDtoLogData.Description, Is.EqualTo("Door is locked"));
             Assert.That(_uutDtoLogData.Locked, Is.EqualTo(true));
-            Assert.That(_uutDtoLogData.TimeStamp, Is.EqualTo(DateTime.Now));
+            Assert.That(_uutDtoLogData.TimeStamp, Is.EqualTo(DateTime.Now.ToString("HH':'mm':'ss")));
         }
 
         [Test]
         public void IsCalled_UnlockDoorLocked()
         {
-            _uut.LogDoorLocked(5678);
+            _uut.LogDoorUnlocked(5678);
             Assert.That(_uutDtoLogData.Id, Is.EqualTo(5678));
             Assert.That(_uutDtoLogData.Description, Is.EqualTo("Door is unlocked"));
             Assert.That(_uutDtoLogData.Locked, Is.EqualTo(false));
-            Assert.That(_uutDtoLogData.TimeStamp, Is.EqualTo(DateTime.Now));
+            Assert.That(_uutDtoLogData.TimeStamp, Is.EqualTo(DateTime.Now.ToString("HH':'mm':'ss")));
         }
 
     }
