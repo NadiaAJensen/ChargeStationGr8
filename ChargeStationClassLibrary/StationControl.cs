@@ -100,20 +100,6 @@ namespace ChargeStationClassLibrary
             }
         }
 
-        public void DoorOpened()
-        {
-            
-        }
-
-        public void DoorClosed()
-        {
-
-        }
-
-        public void CheckID(int oldId, int id)
-        {
-
-        }
 
         private void HandleDoorChangedEvents(object sender, DoorChangedEventArgs e)
         {
