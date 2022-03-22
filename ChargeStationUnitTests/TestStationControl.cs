@@ -22,8 +22,6 @@ namespace ChargeStationUnitTests
       private ILogFile _fakeLogFile;
       private IDisplay _fakeDisplay;
 
-   
-
       [SetUp]
       public void Setup()
       {
@@ -32,15 +30,19 @@ namespace ChargeStationUnitTests
          _fakeDoor = Substitute.For<IDoor>();
          _fakeLogFile = Substitute.For<ILogFile>();
          _fakeDisplay = Substitute.For<IDisplay>();
+         
 
          _uut = new StationControl(_fakeChargeControl, _fakeRfidReader, _fakeDoor, _fakeLogFile, _fakeDisplay);
       }
 
-      [Test]
-
-      public void testRFIDdetected()
+      [TestCase(1234)]
+      public void testRFIDdetected(int id)
       {
-         
+          _
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs {Id = id});
+
+          Assert.That(_uut._oldId, Is.EqualTo(id));
+
       }
    }
 }
