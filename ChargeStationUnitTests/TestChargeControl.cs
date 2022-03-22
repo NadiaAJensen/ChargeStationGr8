@@ -49,11 +49,37 @@ namespace ChargeStationUnitTests
         {
             _fakeUsbCharger.CurrentChangedEventArgs +=
                 Raise.EventWith(new CurrentChangedEventArgs {Current = newCurrent});
-            
 
             Assert.That(_uut.LatestCurrent, Is.EqualTo(newCurrent));
         }
 
-        
+        [Test]
+        public void StartChargeIsCalled()
+        {
+            _uut.StartCharge();
+
+            _fakeUsbCharger.Received(1).StartCharge();
+        }
+
+        [Test]
+        public void StopeChargeIsCalled()
+        {
+            _uut.StopCharge();
+
+            _fakeUsbCharger.Received(1).StopCharge();
+        }
+
+        [Test]
+        public void StartChargeIsNotCalled()
+        {
+            _fakeUsbCharger.Received(0).StartCharge();
+        }
+
+        [Test]
+        public void StopeChargeIsNotCalled()
+        {
+            _fakeUsbCharger.Received(0).StopCharge();
+        }
+
     }
 }
