@@ -21,7 +21,8 @@ namespace ChargeStationClassLibrary
             _display = display;
             _usbCharger = usbCharger;
             _usbCharger.CurrentChangedEvent += HandleCurrentChangedEvent;
-        }
+            Connected = _usbCharger.Connected;
+      }
 
         private void HandleCurrentChangedEvent(object sender, CurrentChangedEventArgs e)
         {
@@ -30,7 +31,8 @@ namespace ChargeStationClassLibrary
 
         public bool IsConnected()
         {
-            return Connected;
+           
+           return Connected;
         }
         public void StartCharge()
         {
