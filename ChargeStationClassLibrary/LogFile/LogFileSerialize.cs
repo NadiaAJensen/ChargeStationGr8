@@ -10,7 +10,7 @@ namespace ChargeStationClassLibrary.LogFile
 {
     public class LogFileSerialize
     {
-        // Tjek Solution "Configuration" fra ITS3 3. semester
+        
         public void Save(DTO_LogData dtoLogData)
         {
             string json = JsonSerializer.Serialize(dtoLogData);
@@ -21,8 +21,6 @@ namespace ChargeStationClassLibrary.LogFile
                 string text = File.ReadAllText(path);
                 DTO_LogData logFileConfig = JsonSerializer.Deserialize<DTO_LogData>(text);
                 return logFileConfig;
-                
-            // tilføj kode som overskriver 
         }
 
         
