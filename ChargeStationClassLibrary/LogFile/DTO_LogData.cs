@@ -11,6 +11,6 @@ namespace ChargeStationClassLibrary.LogFile
         public int Id { get; set; }
         public bool Locked { get; set; }
         public string Description { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
     }
 }
