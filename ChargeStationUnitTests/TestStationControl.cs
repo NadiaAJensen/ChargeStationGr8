@@ -34,7 +34,7 @@ namespace ChargeStationUnitTests
 
          _uut = new StationControl(_fakeChargeControl, _fakeRfidReader, _fakeDoor, _fakeLogFile, _fakeDisplay);
       }
-
+    /*
       [TestCase(1234)]
       public void testRFIDdetected(int id)
       {
@@ -44,5 +44,6 @@ namespace ChargeStationUnitTests
           Assert.That(_uut._oldId, Is.EqualTo(id));
 
       }
+    */
    }
 }
