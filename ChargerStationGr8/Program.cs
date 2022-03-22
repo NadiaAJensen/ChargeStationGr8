@@ -24,46 +24,50 @@ namespace ChargerStationGr8
             ChargeControl chargeControl = new ChargeControl(display, usbsChargerSimulator);
 
             StationControl stationControl = new StationControl(chargeControl, rfidReader, door, logFile);
-            
-            
 
-            bool finish = false;
-            do
+            bool cont = true;
+            Console.WriteLine("Control Menu");
+            Console.WriteLine("----------------------");
+            Console.WriteLine("[O]      Open door");
+            Console.WriteLine("[C]      Close door");
+            Console.WriteLine("[R]      Indtast RFID id");
+            Console.WriteLine("[U]      Simulates phone to charger");
+            Console.WriteLine("[W]      Simulates phone off charger");
+            Console.WriteLine("[E]      Ending Program");
+
+            while (cont)
             {
-                string input;
-                System.Console.WriteLine("Indtast E, O, C, R, u: ");
-                input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input)) continue;
-
-                switch (input[0])
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                switch (key.KeyChar)
                 {
-                    case 'E':
-                        finish = true;
-                        break;
-
                     case 'O':
+                    case 'o':
                         door.OpenDoor(true);
                         break;
-
                     case 'C':
+                    case 'c':
                         door.CloseDoor(false);
                         break;
-
                     case 'R':
-                        System.Console.WriteLine("Indtast RFID id: ");
+                    case 'r':
+                        display.PrintString("Indtast RFID id: ");
                         string idString = System.Console.ReadLine();
                         rfidReader.ReadRFIDTag(Convert.ToInt32(idString));
                         break;
-                    
+                    case 'U':
                     case 'u':
-                       usbsChargerSimulator.SimulateConnected(true);
-                       break; 
-
-                    default:
+                        usbsChargerSimulator.SimulateConnected(true);
+                        break;
+                    case 'W':
+                    case 'w':
+                        usbsChargerSimulator.SimulateConnected(false);
+                        break;
+                    case 'E':
+                    case 'e':
+                        cont = false;
                         break;
                 }
-
-            } while (!finish);
+            }
         }
 
     }

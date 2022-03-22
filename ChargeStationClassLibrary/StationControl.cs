@@ -7,6 +7,7 @@ using System.IO;
 using ChargeStationClassLibrary.Door;
 using ChargeStationClassLibrary.RFIDReader;
 using ChargeStationClassLibrary.LogFile;
+using ChargeStationClassLibrary.Display;
 
 namespace ChargeStationClassLibrary
 {
@@ -26,14 +27,16 @@ namespace ChargeStationClassLibrary
         private IChargeControl _charger; 
         private int _oldId;
         private IDoor _door;
+        private IDisplay _display;
 
         private string logFile = "logFile.json"; // Navnet på systemets log-fil
 
-        public StationControl(IChargeControl chargeControl, IRFIDReader rfidReader, IDoor door, ILogFile logfile)
+        public StationControl(IChargeControl chargeControl, IRFIDReader rfidReader, IDoor door, ILogFile logfile, IDisplay display)
         {
             _charger = chargeControl;
             _door = door;
             _logFile = logfile;
+            _display = display;
             door.DoorStatusChangedEvent += HandleDoorChangedEvents;
 
             rfidReader.IdChangedEvent += HandleRFIDChangedEvent;
@@ -84,7 +87,7 @@ namespace ChargeStationClassLibrary
                     //        writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
                     //    }
 
-                    //    Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                    _display.PrintString("Tag din telefon ud af skabet og luk døren");
                            _state = LadeskabState.Available;
                     
                     }
@@ -99,6 +102,7 @@ namespace ChargeStationClassLibrary
 
         public void DoorOpened()
         {
+            
         }
 
         public void DoorClosed()
