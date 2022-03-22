@@ -9,7 +9,6 @@ namespace ChargeStationClassLibrary.RFIDReader
    public class RFIReader:IRFIDReader
    {
       public event EventHandler<RFIDChangedEventArgs> IdChangedEvent;
-      private Random rdr = new Random();
 
       public void ReadRFIDTag(int id)
       {
