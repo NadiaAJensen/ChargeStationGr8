@@ -89,7 +89,6 @@ namespace ChargeStationClassLibrary
 
                     _display.PrintString("Tag din telefon ud af skabet og luk døren");
                            _state = LadeskabState.Available;
-                    
                     }
                     else
                     {
