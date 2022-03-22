@@ -11,7 +11,6 @@ namespace ChargeStationClassLibrary
         event EventHandler<CurrentChangedEventArgs> CurrentChangeEvent;
         bool Connected { get; set; }
         void StartCharge();
-
         void StopCharge();
 
 
