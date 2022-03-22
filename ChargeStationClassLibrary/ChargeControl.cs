@@ -29,18 +29,13 @@ namespace ChargeStationClassLibrary
             LatestCurrent = e.Current;
         }
 
-        public bool IsConnected()
-        {
-           
-           return Connected;
-        }
         public void StartCharge()
         {
-
+            _usbCharger.StartCharge();
         }
         public void StopCharge()
         {
-
+            _usbCharger.StopCharge();
         }
     }
 }
