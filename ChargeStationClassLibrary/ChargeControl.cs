@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,26 @@ namespace ChargeStationClassLibrary
         private void HandleCurrentChangedEvent(object sender, CurrentChangedEventArgs e)
         {
             LatestCurrent = e.Current;
+
+            if (LatestCurrent == 0)
+            {
+                _display.PrintString("No phone connected");
+            }
+            else if(LatestCurrent >0 && LatestCurrent<=5)
+            {
+                StopCharge();
+                _display.PrintString("Phone fully charged");
+            }
+            else if (LatestCurrent > 5 && LatestCurrent <= 500)
+            {
+                StartCharge();
+                _display.PrintString("Chargeing ongoing");
+            }
+            else if (LatestCurrent > 500)
+            {
+                StopCharge();
+                _display.PrintString("Error in chargeing");
+            }
         }
 
         public void StartCharge()
