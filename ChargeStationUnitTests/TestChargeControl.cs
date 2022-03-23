@@ -81,5 +81,47 @@ namespace ChargeStationUnitTests
             _fakeUsbCharger.Received(0).StopCharge();
         }
 
+
+        [TestCase(0)]
+        public void CurrentChanged_ValueZero(int newCurrent)
+        {
+            _fakeUsbCharger.CurrentChangedEventArgs +=
+                Raise.EventWith(new CurrentChangedEventArgs { Current = newCurrent });
+
+            _fakeDisplay.Received(1).PrintString("No phone connected");
+        }
+
+        [TestCase(1)]
+        [TestCase(5)]
+        public void CurrentChanged_ValueBetweenZeroAndFive(int newCurrent)
+        {
+            _fakeUsbCharger.CurrentChangedEventArgs +=
+                Raise.EventWith(new CurrentChangedEventArgs { Current = newCurrent });
+            
+            
+            _fakeDisplay.Received(1).PrintString("Phone fully charged");
+        }
+
+        [TestCase(6)]
+        [TestCase(500)]
+        public void CurrentChanged_ValueBetweenFiveAndFivehundred(int newCurrent)
+        {
+            _fakeUsbCharger.CurrentChangedEventArgs +=
+                Raise.EventWith(new CurrentChangedEventArgs { Current = newCurrent });
+
+
+            _fakeDisplay.Received(1).PrintString("Chargeing ongoing");
+        }
+
+        [TestCase(501)]
+        public void CurrentChanged_ValueOverFivehundred(int newCurrent)
+        {
+            _fakeUsbCharger.CurrentChangedEventArgs +=
+                Raise.EventWith(new CurrentChangedEventArgs { Current = newCurrent });
+
+
+            _fakeDisplay.Received(1).PrintString("Error in chargeing");
+        }
+
     }
 }
