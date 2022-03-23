@@ -33,6 +33,7 @@ namespace ChargeStationClassLibrary
 
         public StationControl(IChargeControl chargeControl, IRFIDReader rfidReader, IDoor door, ILogFile logfile, IDisplay display)
         {
+            _state = LadeskabState.Available;
             _charger = chargeControl;
             _door = door;
             _logFile = logfile;
@@ -59,7 +60,7 @@ namespace ChargeStationClassLibrary
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.PrintString("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
@@ -77,12 +78,12 @@ namespace ChargeStationClassLibrary
                         _logFile.LogDoorUnlocked(id);
                         
 
-                    _display.PrintString("Tag din telefon ud af skabet og luk døren");
+                        _display.PrintString("Tag din telefon ud af skabet og luk døren");
                            _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        _display.PrintString("Forkert RFID tag");
                     }
 
                     break;
