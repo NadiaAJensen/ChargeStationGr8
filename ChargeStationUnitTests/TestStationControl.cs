@@ -72,6 +72,23 @@ namespace ChargeStationUnitTests
             _fakeLogFile.Received(1).LogDoorUnlocked(id);
       }
 
+      [TestCase(1234,1000, false)]
+      public void TestRFIDdetected_FalseID_StateLocked(int Old_id, int new_id, bool state)
+      {
+          _fakeChargeControl.Connected = true;
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = Old_id });
+          //should set the old id
+
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = new_id });
+
+          _fakeDisplay.Received(1).PrintString("Forkert RFID tag");
+
+          
+      }
+
 
     }
 }
