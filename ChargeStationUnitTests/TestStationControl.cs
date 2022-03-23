@@ -55,7 +55,23 @@ namespace ChargeStationUnitTests
           _fakeDisplay.Received(1).PrintString("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
 
       }
+      [TestCase(1234, false)]
+      public void TestRFIDdetected_CorrectID_StateLocked(int id, bool state)
+      {
+          _fakeChargeControl.Connected = true;
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
+          //should set the old id
+
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
+
+            _fakeDisplay.Received(1).PrintString("Tag din telefon ud af skabet og luk døren");
+
+            _fakeLogFile.Received(1).LogDoorUnlocked(id);
+      }
 
 
-   }
+    }
 }
