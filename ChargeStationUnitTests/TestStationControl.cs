@@ -41,8 +41,9 @@ namespace ChargeStationUnitTests
       {
           _fakeChargeControl.Connected = true;
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs {Id = id});
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = true });
 
-          _fakeLogFile.Received(1).LogDoorLocked(id);
+            _fakeLogFile.Received(1).LogDoorLocked(id);
       }
 
       [TestCase(1000)]
@@ -55,7 +56,40 @@ namespace ChargeStationUnitTests
           _fakeDisplay.Received(1).PrintString("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
 
       }
+      [TestCase(1234, false)]
+      public void TestRFIDdetected_CorrectID_StateLocked(int id, bool state)
+      {
+          _fakeChargeControl.Connected = true;
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
+          //should set the old id
+
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
+
+            _fakeDisplay.Received(1).PrintString("Tag din telefon ud af skabet og luk døren");
+
+            _fakeLogFile.Received(1).LogDoorUnlocked(id);
+      }
+
+      [TestCase(1234,1000, false)]
+      public void TestRFIDdetected_FalseID_StateLocked(int Old_id, int new_id, bool state)
+      {
+          _fakeChargeControl.Connected = true;
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = Old_id });
+          //should set the old id
+
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = new_id });
+
+          _fakeDisplay.Received(1).PrintString("Forkert RFID tag");
+
+          
+      }
 
 
-   }
+    }
 }

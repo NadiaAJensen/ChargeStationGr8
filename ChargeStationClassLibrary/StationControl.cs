@@ -97,7 +97,7 @@ namespace ChargeStationClassLibrary
             {
                 _state = LadeskabState.Available;
             }
-            else
+            else if(e.DoorStatus==false)
             {
                 _state = LadeskabState.Locked;
             }
