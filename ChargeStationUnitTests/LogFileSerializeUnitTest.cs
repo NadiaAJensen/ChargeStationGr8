@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Enumeration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,16 +35,34 @@ namespace ChargeStationUnitTests
         [Test]
         public void TestofSerialization()
         {
-            
-            //tjekker om fil eksisterer
+            string path = @"..\..\logFile.json";
+            //definerer fil
+
             // logger noget i filen
-            string testDescription = "test";
-            int testId = 5678;
-            bool locked = true;
+            _uutDtoLogData.Id = 1234;
+            _uutDtoLogData.Locked = true;
+            _uutDtoLogData.Description = "Door is locked";
+            _uutDtoLogData.TimeStamp = DateTime.Now.ToString("HH':'mm':'ss");
 
             _uut.Save(_uutDtoLogData);
-            //laver en streamreader
-            //læser det ind som text og tjekker om det er det samme som er logget
+            _uut.Load(path);
+
+
+            DTO_LogData testData = new DTO_LogData();
+            if (testData == null) throw new ArgumentNullException(nameof(testData));
+            testData = _uut.Load(path);
+            Assert.That(testData, Is.EqualTo(_uutDtoLogData));
+
+            //Assert.AreEqual(testdata, _uutDtoLogData);
+            //string fildata = File.ReadAllText(path);
+            //testdata  = JsonSerializer.
+
+            
+
+
+
+
+
         }
 
     }

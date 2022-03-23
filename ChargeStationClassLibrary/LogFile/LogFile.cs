@@ -33,7 +33,7 @@ namespace ChargeStationClassLibrary.LogFile
             dtoLogData.Locked = false;
             dtoLogData.Description = "Door is unlocked";
             dtoLogData.TimeStamp = DateTime.Now.ToString("HH':'mm':'ss");
-         _logFileSerialize.Load(dtoLogData, @"..\..\logFile.json");
+         _logFileSerialize.Load(@"..\..\logFile.json");
         }
     }
 }

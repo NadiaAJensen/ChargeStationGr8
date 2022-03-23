@@ -16,7 +16,7 @@ namespace ChargeStationClassLibrary.LogFile
             string json = JsonSerializer.Serialize(dtoLogData);
             File.WriteAllText(@"..\..\logFile.json", json);
         }
-        public DTO_LogData Load(DTO_LogData dtoLogData, string path)
+        public DTO_LogData Load(string path)
         {
                 string text = File.ReadAllText(path);
                 DTO_LogData logFileConfig = JsonSerializer.Deserialize<DTO_LogData>(text);
