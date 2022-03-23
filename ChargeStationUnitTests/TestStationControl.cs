@@ -52,7 +52,6 @@ namespace ChargeStationUnitTests
 
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
 
-          
           _fakeDisplay.Received(1).PrintString("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
 
       }
