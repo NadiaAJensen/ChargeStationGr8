@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,16 +35,28 @@ namespace ChargeStationUnitTests
 
          _uut = new StationControl(_fakeChargeControl, _fakeRfidReader, _fakeDoor, _fakeLogFile, _fakeDisplay);
       }
-    /*
+   
       [TestCase(1234)]
-      public void testRFIDdetected(int id)
+      public void TestRFIDdetected_CorrectID_StateAvailable(int id)
       {
-          _
+          _fakeChargeControl.Connected = true;
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs {Id = id});
 
-          Assert.That(_uut._oldId, Is.EqualTo(id));
+          _fakeLogFile.Received(1).LogDoorLocked(id);
+      }
+
+      [TestCase(1000)]
+      public void TestRFIDdetected_FalseID_StateAvailable(int id)
+      {
+          _fakeChargeControl.Connected = false;
+
+          _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
+
+          
+          _fakeDisplay.Received(1).PrintString("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
 
       }
-    */
+
+
    }
 }

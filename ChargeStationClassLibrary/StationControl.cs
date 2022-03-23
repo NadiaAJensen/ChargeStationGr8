@@ -33,6 +33,7 @@ namespace ChargeStationClassLibrary
 
         public StationControl(IChargeControl chargeControl, IRFIDReader rfidReader, IDoor door, ILogFile logfile, IDisplay display)
         {
+            _state = LadeskabState.Available;
             _charger = chargeControl;
             _door = door;
             _logFile = logfile;
