@@ -20,7 +20,7 @@ namespace ChargeStationClassLibrary.LogFile
         {
                 string text = File.ReadAllText(path);
                 DTO_LogData logFileConfig = JsonSerializer.Deserialize<DTO_LogData>(text);
-                return logFileConfig;
+            return logFileConfig;
         }
 
         

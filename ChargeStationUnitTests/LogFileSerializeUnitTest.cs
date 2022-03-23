@@ -27,16 +27,11 @@ namespace ChargeStationUnitTests
             _uutDtoLogData = new DTO_LogData();
         }
 
+        
         [Test]
-        public void TestofDeserialization()
-        {
-
-        }
-        [Test]
-        public void TestofSerialization()
+        public void TestofSerializationAndDeserialization()
         {
             string path = @"..\..\logFile.json";
-            //definerer fil
 
             // logger noget i filen
             _uutDtoLogData.Id = 1234;
@@ -44,25 +39,15 @@ namespace ChargeStationUnitTests
             _uutDtoLogData.Description = "Door is locked";
             _uutDtoLogData.TimeStamp = DateTime.Now.ToString("HH':'mm':'ss");
 
+
             _uut.Save(_uutDtoLogData);
-            _uut.Load(path);
+            DTO_LogData testData = _uut.Load(path);
+            string data = Convert.ToString(testData);
+            Assert.That(data, Is.EqualTo(_uutDtoLogData.ToString()));
 
-
-            DTO_LogData testData = new DTO_LogData();
-            if (testData == null) throw new ArgumentNullException(nameof(testData));
-            testData = _uut.Load(path);
-            Assert.That(testData, Is.EqualTo(_uutDtoLogData));
-
-            //Assert.AreEqual(testdata, _uutDtoLogData);
-            //string fildata = File.ReadAllText(path);
-            //testdata  = JsonSerializer.
+            Assert.AreEqual(data, _uutDtoLogData.ToString());
 
             
-
-
-
-
-
         }
 
     }
