@@ -41,8 +41,9 @@ namespace ChargeStationUnitTests
       {
           _fakeChargeControl.Connected = true;
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs {Id = id});
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = true });
 
-          _fakeLogFile.Received(1).LogDoorLocked(id);
+            _fakeLogFile.Received(1).LogDoorLocked(id);
       }
 
       [TestCase(1000)]
