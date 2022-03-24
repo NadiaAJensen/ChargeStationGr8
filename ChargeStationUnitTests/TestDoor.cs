@@ -50,13 +50,18 @@ namespace ChargeStationUnitTests
             Assert.That(_receivedEventArgs,Is.Not.Null);
             Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(true));
         }
-  
+        [Test]
+        public void TestOpenDoorEventIscalledRight()
+        {
+           _uut.OpenDoor(true);
+           Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(true));
+        }
       [Test]
         public void TestCloseDoorEvent()
         {
             _uut.CloseDoor(false);
             Assert.That(_receivedEventArgs, Is.Not.Null);
-            Assert.That(_receivedEventArgs.DoorStatus,Is.EqualTo(false));
+
         }
 
     }
