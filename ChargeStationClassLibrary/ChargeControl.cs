@@ -40,7 +40,7 @@ namespace ChargeStationClassLibrary
             }
             else if (LatestCurrent > 5 && LatestCurrent <= 500)
             {
-                
+                //_display.PrintString(LatestCurrent.ToString());
                 _display.PrintString("Chargeing ongoing");
             }
             else if (LatestCurrent > 500)
