@@ -95,12 +95,19 @@ namespace ChargeStationClassLibrary
         {
             if (e.DoorStatus)
             {
-                _state = LadeskabState.Available;
+                _state = LadeskabState.DoorOpen;
+                _display.PrintString("Tilslut telefon");
+            }
+
+            if (e.DoorStatus&&_charger.Connected)
+            {
+               _state = LadeskabState.Available;
             }
             else if(e.DoorStatus==false)
             {
                 _state = LadeskabState.Locked;
-            }
+               
+         }
         }
 
         private void HandleRFIDChangedEvent(object sender, RFIDChangedEventArgs e)
