@@ -43,24 +43,36 @@ namespace ChargeStationUnitTests
             Assert.AreEqual("Door is locked\r\n", stringwriter.ToString());
         }
 
-        [Test]
-        public void TestOpenDoorEvent()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TestOpenDoorEventIscalledRight(bool status)
         {
-            _uut.OpenDoor(true);
-            Assert.That(_receivedEventArgs,Is.Not.Null);
-            Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(true));
+           _uut.OpenDoor(status);
+           if (status)
+           {
+               Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(status));
+           }
+           else
+           {
+               Assert.That(_receivedEventArgs, Is.Null); //Null betyder den ikke er kaldt.
+           }
         }
-        [Test]
-        public void TestOpenDoorEventIscalledRight()
+
+
+      [TestCase(true)]
+      [TestCase(false)]
+        public void TestCloseDoorEvent(bool status)
         {
-           _uut.OpenDoor(true);
-           Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(true));
-        }
-      [Test]
-        public void TestCloseDoorEvent()
-        {
-            _uut.CloseDoor(false);
-            Assert.That(_receivedEventArgs, Is.Not.Null);
+            _uut.CloseDoor(status);
+
+            if (!status)
+            {
+               Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(status));
+            }
+            else
+            {
+                Assert.That(_receivedEventArgs, Is.Null);
+            }
 
         }
 

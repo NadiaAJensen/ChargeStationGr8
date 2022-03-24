@@ -21,12 +21,18 @@ namespace ChargeStationClassLibrary.Door
 
         public void OpenDoor(bool status)
         {
-            DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs{DoorStatus = status});
+            if (status)
+            {
+                DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs {DoorStatus = status});
+            }
         }
 
         public void CloseDoor(bool status)
         {
-            DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs { DoorStatus = status });
+            if (!status)
+            {
+                DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs {DoorStatus = status});
+            }
         }
     }
 }
