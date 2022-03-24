@@ -42,9 +42,6 @@ namespace ChargeStationUnitTests
          Assert.That(_receivedEventArgs.Id,Is.EqualTo(id));
       }
 
-      public void TestReadId_ifnothingiscalled(int id)
-      {
-         Assert.That(_receivedEventArgs.Id, Is.Null);
-      }
+    
    }
 }

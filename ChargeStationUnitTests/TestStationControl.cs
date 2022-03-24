@@ -116,7 +116,16 @@ namespace ChargeStationUnitTests
          _fakeDisplay.Received(1).PrintString("Ladeskab optaget");
 
       }
+      [Test]
 
+      public void TestDoorOpen()
+      {
+         _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = true });
+         _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = 1234 });
+
+         _fakeDisplay.Received(1).PrintString("Tilslut telefon");
+
+      }
 
    }
 }

@@ -67,8 +67,8 @@ namespace ChargeStationClassLibrary
                     break;
 
                 case LadeskabState.DoorOpen:
-                    // Ignore
-                    break;
+               _display.PrintString("Tilslut telefon");
+               break;
 
                 case LadeskabState.Locked:
                     // Check for correct ID
@@ -97,8 +97,8 @@ namespace ChargeStationClassLibrary
             if (e.DoorStatus)
             {
                 _state = LadeskabState.DoorOpen;
-                _display.PrintString("Tilslut telefon");
-            }
+               
+         }
             if ( _charger.Connected && e.DoorStatus==false&&_oldId==0)
             {
                _state = LadeskabState.Available;
