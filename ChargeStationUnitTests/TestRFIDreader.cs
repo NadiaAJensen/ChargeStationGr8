@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChargerStationGr8;
+using ChargeStationClassLibrary;
 using ChargeStationClassLibrary.RFIDReader;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace ChargeStationUnitTests
@@ -13,8 +15,9 @@ namespace ChargeStationUnitTests
    {
       private RFIReader _uut;
       private RFIDChangedEventArgs _receivedEventArgs;
+      private StationControl _stationControl;
 
-      [SetUp]
+         [SetUp]
       public void Setup()
       {
          _receivedEventArgs = null;
@@ -38,5 +41,6 @@ namespace ChargeStationUnitTests
          _uut.ReadRFIDTag(id);
          Assert.That(_receivedEventArgs.Id,Is.EqualTo(id));
       }
+
    }
 }

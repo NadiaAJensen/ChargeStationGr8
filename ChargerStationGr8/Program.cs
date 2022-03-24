@@ -53,8 +53,8 @@ namespace ChargerStationGr8
                         break;
                     case 'C':
                     case 'c':
-                        door.CloseDoor(false);
-                        break;
+                       door.CloseDoor(false);
+                           break;
                     case 'R':
                     case 'r':
                         display.PrintString("Indtast RFID id: ");

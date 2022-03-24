@@ -13,7 +13,9 @@ namespace ChargeStationClassLibrary
         private IDisplay _display;
         private IUSBCharger _usbCharger;
         public bool Connected { get; set; }
-        public double LatestCurrent { get; set; }
+        int chargestarted = 1;
+
+      public double LatestCurrent { get; set; }
 
         public event EventHandler<CurrentChangedEventArgs> CurrentChangeEventArgs;
 
@@ -23,13 +25,13 @@ namespace ChargeStationClassLibrary
             _usbCharger = usbCharger;
             _usbCharger.CurrentChangedEventArgs += HandleCurrentChangedEvent;
             Connected = _usbCharger.Connected;
-      }
+        }
 
         private void HandleCurrentChangedEvent(object sender, CurrentChangedEventArgs e)
         {
             LatestCurrent = e.Current;
 
-            if (LatestCurrent == 0)
+            if (LatestCurrent == 0&&Connected==false)
             {
                 _display.PrintString("No phone connected");
             }
@@ -40,8 +42,12 @@ namespace ChargeStationClassLibrary
             }
             else if (LatestCurrent > 5 && LatestCurrent <= 500)
             {
-                
-                _display.PrintString("Chargeing ongoing");
+               if (chargestarted==1)
+               {
+                 _display.PrintString("Chargeing ongoing");
+                 chargestarted++;
+               }
+               
             }
             else if (LatestCurrent > 500)
             {
