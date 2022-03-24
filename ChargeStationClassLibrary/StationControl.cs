@@ -101,7 +101,7 @@ namespace ChargeStationClassLibrary
             if ( _charger.Connected && e.DoorStatus==false)
             {
                _state = LadeskabState.Available;
-               //_display.PrintString("Indlæs RFID");
+               _display.PrintString("Indlæs RFID");
 
          }
          else if(e.DoorStatus==false&&_oldId!=0)

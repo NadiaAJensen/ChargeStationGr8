@@ -92,6 +92,18 @@ namespace ChargeStationUnitTests
           
       }
 
+      [Test]
 
-    }
+      public void Testdooropen_noRFIDDetected()
+      {
+         _fakeChargeControl.Connected = true;
+
+         _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = false });
+
+         _fakeDisplay.Received(1).PrintString("Indlæs RFID");
+
+      }
+
+
+   }
 }
