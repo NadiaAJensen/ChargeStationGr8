@@ -104,18 +104,6 @@ namespace ChargeStationUnitTests
 
       }
 
-      [TestCase(1234, 1234, false)]
-
-      public void Testdoorclosed_oldIdIsNotNulld(int Old_id, int new_id, bool state)
-      {
-         _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = false });
-         _fakeChargeControl.Connected = true;
-         _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = Old_id });
-         _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = new_id });
-         
-         _fakeDisplay.Received(1).PrintString("Tag din telefon ud af skabet og luk døren");
-      }
-
 
    }
 }
