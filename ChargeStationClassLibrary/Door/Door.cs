@@ -23,7 +23,7 @@ namespace ChargeStationClassLibrary.Door
         {
             if (status)
             {
-                DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs {DoorStatus = status});
+                DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs {DoorStatus = true});
             }
         }
 
@@ -31,7 +31,7 @@ namespace ChargeStationClassLibrary.Door
         {
             if (!status)
             {
-                DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs {DoorStatus = status});
+                DoorStatusChangedEvent?.Invoke(this, new DoorChangedEventArgs {DoorStatus = false});
             }
         }
     }
