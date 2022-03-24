@@ -51,6 +51,7 @@ namespace ChargeStationUnitTests
            if (status)
            {
                Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(status));
+               Assert.That(_receivedEventArgs, Is.Not.Null);
            }
            else
            {
@@ -68,6 +69,7 @@ namespace ChargeStationUnitTests
             if (!status)
             {
                Assert.That(_receivedEventArgs.DoorStatus, Is.EqualTo(status));
+               Assert.That(_receivedEventArgs, Is.Not.Null);
             }
             else
             {
