@@ -99,7 +99,7 @@ namespace ChargeStationClassLibrary
                 _state = LadeskabState.DoorOpen;
                 _display.PrintString("Tilslut telefon");
             }
-            if ( _charger.Connected && e.DoorStatus==false)
+            if ( _charger.Connected && e.DoorStatus==false&&_oldId==0)
             {
                _state = LadeskabState.Available;
                _display.PrintString("Indlæs RFID");
@@ -109,7 +109,7 @@ namespace ChargeStationClassLibrary
             {
                    _state = LadeskabState.Locked;
                    _display.PrintString("Ladeskab optaget");
-                  
+
             }
            
         }

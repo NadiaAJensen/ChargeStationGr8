@@ -105,5 +105,18 @@ namespace ChargeStationUnitTests
       }
 
 
+      [Test]
+
+      public void Testdoorclosed_chargerconnected()
+      {
+         _fakeChargeControl.Connected = true;
+         _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = 1234 });
+         _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = false });
+
+         _fakeDisplay.Received(1).PrintString("Ladeskab optaget");
+
+      }
+
+
    }
 }

@@ -92,6 +92,7 @@ namespace ChargeStationUnitTests
         }
 
         [TestCase(1)]
+        [TestCase(3)]
         [TestCase(5)]
         public void CurrentChanged_ValueBetweenZeroAndFive(int newCurrent)
         {
@@ -103,7 +104,8 @@ namespace ChargeStationUnitTests
         }
 
         [TestCase(6)]
-        [TestCase(500)]
+        [TestCase(30)]
+      [TestCase(500)]
         public void CurrentChanged_ValueBetweenFiveAndFivehundred(int newCurrent)
         {
             _fakeUsbCharger.CurrentChangedEventArgs +=
