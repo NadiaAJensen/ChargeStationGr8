@@ -12,7 +12,7 @@ namespace ChargeStationClassLibrary
         event EventHandler<CurrentChangedEventArgs> CurrentChangedEventArgs;
 
         // Direct access to the current current value
-        double CurrentValue { get; }
+        public double CurrentValue { get; }
 
         // Require connection status of the phone
         public bool Connected { get; }
