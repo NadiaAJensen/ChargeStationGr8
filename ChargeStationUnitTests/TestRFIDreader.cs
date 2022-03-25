@@ -26,20 +26,23 @@ namespace ChargeStationUnitTests
 
       }
 
-      [Test]
-      public void TestReadIdIsCalledWithAnId()
-      {
-         _uut.ReadRFIDTag(1234);
-         Assert.That(_receivedEventArgs, Is.Not.Null);
-      }
       [TestCase(1234)]
-      [TestCase(0000)]
       [TestCase(0001)]
 
       public void TestReadId_IsCalled_WithTheRightId(int id)
       {
          _uut.ReadRFIDTag(id);
-         Assert.That(_receivedEventArgs.Id,Is.EqualTo(id));
+         if (id != 0)
+         {
+            Assert.That(_receivedEventArgs.Id, Is.EqualTo(id));
+            Assert.That(_receivedEventArgs, Is.Not.Null);
+         }
+         else
+         {
+            Assert.That(_receivedEventArgs, Is.Null);
+
+         }
+
       }
 
     
