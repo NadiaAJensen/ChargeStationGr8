@@ -66,7 +66,7 @@ namespace ChargeStationUnitTests
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
           //should set the old id
 
-          //_fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
 
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = id });
 
@@ -83,7 +83,7 @@ namespace ChargeStationUnitTests
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = Old_id });
           //should set the old id
 
-          //_fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
+          _fakeDoor.DoorStatusChangedEvent += Raise.EventWith(new DoorChangedEventArgs { DoorStatus = state });
 
           _fakeRfidReader.IdChangedEvent += Raise.EventWith(new RFIDChangedEventArgs { Id = new_id });
 
